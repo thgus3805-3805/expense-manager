@@ -12,7 +12,7 @@ export async function GET() {
   } catch (error) {
     console.error('Failed to fetch expenses:', error)
     return NextResponse.json(
-      { error: 'Failed to fetch expenses' },
+      { error: 'Failed to fetch expenses', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Failed to create expense:', error)
     return NextResponse.json(
-      { error: 'Failed to create expense' },
+      { error: 'Failed to create expense', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }
